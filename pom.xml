@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 		http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -17,25 +16,8 @@
 
 	<name>plugins/Demo_Plugin.jar</name>
 
-	<developers>
-		<developer>
-			<id>dscho</id>
-			<name>Johannes Schindelin</name>
-			<email>johannes.schindelin@gmx.de</email>
-			<url>http://loci.wisc.edu/people/johannes-schindelin</url>
-			<organization>UW-Madison LOCI</organization>
-			<organizationUrl>http://loci.wisc.edu/</organizationUrl>
-			<roles>
-				<role>architect</role>
-				<role>developer</role>
-			</roles>
-			<timezone>-6</timezone>
-		</developer>
-	</developers>
-
-
 	<properties>
-		<main-class>Process_Pixels</main-class>
+		<main-class>Demo_Plugin</main-class>
 	</properties>
 
 	<dependencies>
@@ -47,6 +29,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-failsafe-plugin</artifactId>
+			<version>2.12</version>
+			<type>maven-plugin</type>
 		</dependency>
 	</dependencies>
 
@@ -61,6 +49,25 @@
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<!-- Here we are setting the failsafe plugin to include all tests marked 
+						by the category IntegrationTest -->
+					<groups></groups>
+				</configuration>
+				<executions>
+					<execution>
+						<id></id>
+						<phase>verify</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
